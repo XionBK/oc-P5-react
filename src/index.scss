@@ -1,6 +1,67 @@
 @import "./reset.scss";
 
 $main-color: #FF6060;
+$grey-color: #F6F6F6;
+
+.collapse {
+
+    margin-bottom: 30px;
+
+    .collapse-title {
+        background-color: $main-color;
+        display: flex;
+        justify-content: space-between;
+        border-radius: 5px;
+        padding: 0px 10px;//padding: 10px 20px;
+        align-items: center;  
+        font-size: 13px;//font-size: 24px;
+        color: #fff;
+
+        h2 { font-weight: 700; }
+    }
+
+    .collapse-content {
+        overflow-y: hidden;
+        max-height: 0px;
+        transition: all .5s ease;
+
+        p { 
+            line-height: 1.4;
+            font-size: 12px; //font-size: 18px;
+        }
+    }
+    
+    .collapse-info {
+        background-color: $grey-color;
+        border-radius: 0px 0px 5px 5px;
+        transition: all .5s ease;
+        overflow: hidden;
+        padding: 20px;
+        transform: translateY(-100%);    
+    }
+
+    .arrow { 
+        width: 16px; //mobile only
+        margin: 8px; //mobile only
+        transition: all 0.5s;
+        cursor: pointer;
+    }
+
+    &.isOpen {
+        .collapse-content {
+            max-height: 500px;
+        }
+
+        .collapse-info {
+            transform: translateY(0);
+        }
+    
+        .arrow {
+            transform: rotate(-180deg);
+        }
+    }
+}
+
 
 * {
     font-family:'Montserrat', Geneva, Tahoma, sans-serif;
@@ -25,6 +86,7 @@ $main-color: #FF6060;
     border-radius: 10px;
     position: relative;
     overflow: hidden;
+    margin-bottom: 30px;
 
     &::before {
         content: "";

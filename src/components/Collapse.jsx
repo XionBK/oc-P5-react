@@ -2,7 +2,7 @@
 import { useState } from 'react'
 import arrow from '../assets/arrow.svg'
 
-export function Collapse ({title, description}) {
+export function Collapse ({title, children}) {
 
     const [open, setOpen] = useState(false)
     const toggleCollapse = () => setOpen(prevOpen => !prevOpen);
@@ -14,7 +14,7 @@ export function Collapse ({title, description}) {
         </div>
         <div className="collapse-content">
             <div className="collapse-info">
-                <p>{description}</p>
+                {children}
             </div>
         </div>
     </div>

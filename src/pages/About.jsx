@@ -6,7 +6,7 @@ import  aboutList  from "../assets/about.json";
 export function About () {
 
     const collapses = aboutList.map(
-        about => <Collapse key={about.id} title={about.title} description={about.content}/>
+        about => <Collapse key={about.id} title={about.title}><p>{about.content}</p></Collapse>
     )
 
     return <div>

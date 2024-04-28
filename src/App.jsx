@@ -1,7 +1,6 @@
-import { useState } from 'react'
 import logo from './assets/kasa.svg'
 import './index.scss'
-import { Link, NavLink, RouterProvider, createBrowserRouter, Outlet } from 'react-router-dom';
+import { NavLink, RouterProvider, createBrowserRouter, Outlet } from 'react-router-dom';
 import { FicheLogement } from './pages/FicheLogement';
 import { Home } from './pages/Home';
 import { About } from './pages/About';
@@ -23,7 +22,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/fiche-logement/:id",
-        element: <FicheLogement />,
+        element: <FicheLogement logements={logements} />,
       },
       { path: "*", element: <ErrorPage /> },
     ]

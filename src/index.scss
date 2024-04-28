@@ -3,8 +3,20 @@
 $main-color: #FF6060;
 $grey-color: #F6F6F6;
 
+//mobile-first
+
 * {
     font-family:'Montserrat', Geneva, Tahoma, sans-serif;
+}
+
+html, body {
+    height: 100%;
+}
+
+#root {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 a {
@@ -17,24 +29,10 @@ a {
     }
 }
 
-h2 {
+.title {
     font-size: 18px; 
     font-weight: 500;
     color: $main-color;
-}
-
-.error404 {
-    text-align: center;
-    min-height: 600px;
-    display: flex;
-    justify-content: space-around;
-    flex-direction: column;
-    align-items: center;
-    h1 {
-        font-size: 7rem; 
-        font-weight: 700;
-        color: $main-color;
-    }
 }
 
 .main-container {
@@ -42,6 +40,7 @@ h2 {
     padding: 20px;
     max-width: 1240px;
     margin: 0 auto;
+    width: 100%;
 }
 
 .container {
@@ -89,16 +88,48 @@ h2 {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 209px;
+    min-height: 209px;
     flex-direction: column;
+    margin-top: auto;
+
+    .logo-footer {
+        filter:brightness(0) invert(1);
+    }
 }
 
-.logo-footer {
-    filter:brightness(0) invert(1);
+// page
+.error404 {
+    text-align: center;
+    min-height: 600px;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+    h1 {
+        font-size: 7rem; 
+        font-weight: 700;
+        color: $main-color;
+    }
+}
+
+.logement-info {
+    margin: 1rem 0;
+    .logement-name {    
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        .logement-location {
+            font-size: 14px;
+        }
+    }
+    .logement-host {
+        display:flex;
+        justify-content: space-between;
+        align-items: center;
+    }
 }
 
 // components
-
 .banner {
     background-size: cover;
     background-position: center;
@@ -125,11 +156,21 @@ h2 {
         left: 50%;
         transform: translate(-50%, -50%);
         color: white;
-        font-size: 24px; //font-size: 48px;
-        padding: 30px; //padding: 0
+        font-size: 24px;
+        padding: 30px;
         font-weight: 700;
         width: 100%;
-        //text-align: center;
+    }
+}
+
+.card-anime {
+    opacity: 0;
+    transform: scale(0);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+
+    &.visible {
+        opacity: 1;
+        transform: scale(1);
     }
 }
 
@@ -150,7 +191,7 @@ h2 {
     .card {
         border-radius: 10px;
         overflow: hidden;
-        height: 255px;//height: 340px;
+        height: 255px;
         position: relative;
         background-color: $main-color;
         
@@ -176,27 +217,72 @@ h2 {
 
         &:hover > img {
             opacity: 0.2;
-            //filter: grayscale(80%) blur(2px);
         }
     }
 }
 
-.collapse {
+.person {
+    display: flex;
+    gap: 10px;
+    line-height: 1.5;
+    text-align: right;
+    align-items: center;
+    color: $main-color;
+    font-size: 12px;
 
-    margin-bottom: 30px;
+    img {
+        height: 32px;
+        border-radius: 100%;
+    }
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 0.5rem 0;
+    li {
+        background-color: $main-color;
+        color: white;
+        width: auto;
+        min-width: 84px;
+        height: 18px;
+        font-size: 10px;
+        border-radius: 10px;
+        text-align: center;
+        font-weight: 700;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+.rating  {
+    img {
+        width: 18px;
+    }
+    .inactive {
+        filter: grayscale(1) invert(1);
+        opacity: 0.2;
+    }
+}
+
+.collapse {
+    margin-bottom: 15px;
 
     .collapse-title {
         background-color: $main-color;
         display: flex;
         justify-content: space-between;
         border-radius: 5px;
-        padding: 0px 10px;//padding: 10px 20px;
+        padding: 0px 10px;
         align-items: center;  
         
         h2 {
             color: #fff;
             font-weight: 700; 
-            font-size: 13px;//font-size: 24px;
+            font-size: 13px;
         }
     }
 
@@ -204,11 +290,6 @@ h2 {
         overflow-y: hidden;
         max-height: 0px;
         transition: all .5s ease;
-
-        p { 
-            line-height: 1.4;
-            font-size: 12px; //font-size: 18px;
-        }
     }
     
     .collapse-info {
@@ -217,12 +298,14 @@ h2 {
         transition: all .5s ease;
         overflow: hidden;
         padding: 20px;
-        transform: translateY(-100%);    
+        transform: translateY(-100%); 
+        line-height: 1.4;
+        font-size: 12px;   
     }
 
     .arrow { 
-        width: 16px; //mobile only
-        margin: 8px; //mobile only
+        width: 16px;
+        margin: 8px;
         transition: all 0.5s;
         cursor: pointer;
     }
@@ -242,15 +325,78 @@ h2 {
     }
 }
 
+.slideshow {
+
+    .slide-container {
+        position: relative;
+        overflow: hidden;
+        border-radius: 10px;
+
+        .slide-content {
+            height: 255px;
+            display: flex;
+            transition: all .6s ease;
+            position: relative;
+            left: 0%;
+
+            img {
+                width: 100%;
+                box-sizing: border-box;
+                flex-shrink: 0;
+                object-fit: cover;
+            }
+        }
+        .nb-slide {
+            position: absolute;
+            width: 100%;
+            bottom: 10px;
+            color: white;
+            text-align: center;
+        }
+        .prev-btn, .next-btn {
+            opacity: 0.7;
+            z-index: 1;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            display: grid;
+            justify-content: center;
+            align-content: center;
+            cursor: pointer;
+            transition: all .4s ease;
+
+            img {
+                height: 24px;
+            }
+
+            &:hover {
+                opacity: 1;
+            }
+        }
+        .prev-btn {
+            left:0px;
+            img {
+                transform: rotate(-90deg);
+            } 
+        }
+        .next-btn {
+            right:0px;
+            img {
+                transform: rotate(90deg);
+            }
+        }
+    }
+}
+
 
 // desktop
-@media (min-width: 768px) {
+@media (min-width: 800px) {
 
     a {
         font-size: 18px;
     }
     
-    h2 {
+    .title {
         font-size: 36px;
     }
     
@@ -299,6 +445,119 @@ h2 {
     
         .card {
             height: 340px;
+        }
+    }
+
+    .slideshow .slide-container {
+        border-radius: 25px;
+        .slide-content {
+            height: 415px;
+        }
+    
+        .prev-btn, .next-btn {
+            img {
+                height: 70px;
+            }
+        }
+    }
+
+    .collapse {
+        margin-bottom: 30px;
+
+        .collapse-title {
+            padding: 2px 20px;
+            h2 {
+                font-size: 24px;
+            }
+        }
+    
+        .collapse-info {
+            font-size: 18px;
+        }
+
+        .arrow { 
+            width: auto;
+        }
+    }
+
+    .collapse-parent {
+        display: grid;
+        column-gap: 6%;
+        grid-template-columns: 47% 47%;
+    }
+
+    .rating  {
+        img {
+            width: auto;
+        }
+    }
+
+    .tags {
+        li {
+            min-width: 115px;
+            height: 25px; 
+            font-size: 14px; 
+        }
+    }
+
+    .person {
+        font-size: 18px;
+        img {
+            height: 64px;
+        }
+    }
+
+    .logement-info {
+        margin: 2rem 0;
+        display: flex;
+        justify-content: space-between;
+
+        .logement-host {
+            align-items: flex-end;
+            gap: 10px;
+            flex-direction: column-reverse;
+        }
+
+        .logement-name .logement-location {
+            font-size: 18px;
+        }
+    }
+
+}
+// tablette
+@media (min-width: 800px) and (max-width: 1024px) {
+
+    .title {
+        font-size: 24px; 
+    }
+
+    .rating  {
+        img {
+            width: 29px;
+        }
+    }
+
+    .logements-cards {
+        
+        a {
+            width: calc(50% - 27px);
+        }
+    
+        .card {
+            height: 340px;
+        }
+    }
+}
+
+@media (max-width: 370px) {
+    .header {
+
+        .logo-head {
+            width: 100px;
+        }
+     
+        .navigation ul {
+            gap: 15px;
         }
     }
 }

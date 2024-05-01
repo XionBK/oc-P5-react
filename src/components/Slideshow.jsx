@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 import arrow from '../assets/arrow.svg'
 
+/**
+ * @param {Array} pictures
+ * @returns {JSX.Element}
+ */
 export function Slideshow ({pictures}) {
 
     const imagesSlider = []

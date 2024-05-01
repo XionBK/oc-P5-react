@@ -1,4 +1,10 @@
-
+/**
+ * @typedef {Object} host
+ * @property {string} name
+ * @property {URL} picture
+ * @param {host} hostObject 
+ * @returns {JSX.Element}
+ */
 export function Person ({host}) {
 
     let hostName = host.name;

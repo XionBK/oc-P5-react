@@ -1,5 +1,10 @@
 import star from '../assets/star.svg'
 
+/**
+ * @param {number} rating
+ * @param {number} total
+ * @returns {JSX.Element}
+ */
 export function Rating ({rating, total}) {
 
     const element = []

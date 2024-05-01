@@ -1,3 +1,7 @@
+/**
+ * @param {Array} tags
+ * @returns {JSX.Element}
+ */
 export function Tags ({tags}) {
 
     const tagsList = tags.map((tag, index) => (

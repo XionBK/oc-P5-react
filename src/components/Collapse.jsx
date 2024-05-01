@@ -1,7 +1,12 @@
 
 import { useState } from 'react'
 import arrow from '../assets/arrow.svg'
-
+/**
+ * 
+ * @param {string} title
+ * @param {HTMLElement} children
+ * @returns {JSX.Element}
+ */
 export function Collapse ({title, children}) {
 
     const [open, setOpen] = useState(false)

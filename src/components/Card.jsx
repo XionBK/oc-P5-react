@@ -1,8 +1,11 @@
 import { useRef, useEffect, useState } from "react";
 /**
- * 
- * @param {Object} logement 
- * @returns 
+ * @typedef {Object} logement
+ * @property {string} id
+ * @property {string} title
+ * @property {URL} cover
+ * @param {logement} logementObject 
+ * @returns {JSX.Element}
  */
 export function Card ({logement}) {
 
